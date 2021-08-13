@@ -116,6 +116,7 @@ public class TestCofre {
         cofre.add(passporte);
         cofre.add(chave);
         cofre.quebrar();
+        System.out.println(cofre.obterItens().getClass());
         assertEquals("Passaporte, Chave do carro", cofre.obterItens(),
                 "Ao obter as moedas, o cofre deve retornar a descricao dos itens nele contidos");
     }

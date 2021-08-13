@@ -34,7 +34,12 @@ public class Cofre {
                 return false;
             }else {
                 setVolume(item.getVolume());
-                this.itens+=item.getDescricao();
+                if(!" ".equals(item.getDescricao())){
+                    this.itens=", ";
+                    this.itens+=item.getDescricao();
+                }else{
+                    this.itens+=item.getDescricao();
+                }
                 return true;
             }
         }
