@@ -1,18 +1,27 @@
+
 public class Item {
 
-    public int volume;
-    public String descricao;
+    private int volume;
+    private String descricao;
 
     public Item(String descricao, int volume) {
-        this.volume = volume;
-        this.descricao = descricao;
+        this.volume=volume;
+        this.descricao=descricao;
     }
+    
+    public int getVolume() {
+		return volume;
+	}
 
-    @Override
+	public String getDescricao() {
+		return descricao;
+	}
+
+	@Override
     public String toString() {
         return "Item{" +
-                "volume=" + volume +
-                ", descricao='" + descricao + '\'' +
+                "volume=" + this.volume +
+                ", descricao='" + this.descricao + '\'' +
                 '}';
     }
 }

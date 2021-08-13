@@ -1,74 +1,101 @@
 public class Cofre {
-
-    int volume = 0;
-    int volumeMaximo = 100;
-    boolean quebrado = false;
-
+        
+    private int volumeMaximo;
+    private int volume = 0;
+    private boolean quebrado = false;
+    private String itens = "";
+    private double moedas;
+    
     public Cofre(int volumeMaximo) {
         this.volumeMaximo = volumeMaximo;
     }
-
+    
+    public void setVolume(int volume) {
+        this.volume += volume;
+    }
+    
     public int getVolume() {
-        return volume;
+        return this.volume;
     }
 
     public int getVolumeMaximo() {
-        return volumeMaximo;
+        return this.volumeMaximo;
     }
 
     public int getVolumeRestante() {
-        return volumeMaximo - volume;
+        return this.volumeMaximo - this.volume;
     }
 
     public boolean add(Item item) {
-        if (quebrado == false){
-            if (volume < volumeMaximo){
-                volume ++;
+        if (quebrado) {
+            return false;
+        }else {
+            if(getVolume() > item.getVolume()||item.getVolume() > volumeMaximo) {
+                return false;
+            }else {
+                setVolume(item.getVolume());
+                this.itens+=item.getDescricao();
                 return true;
             }
-            else return false;
         }
-        else return false;
     }
 
     public boolean add(Moeda moeda) {
-        if(quebrado == false){
-            if (volume < volumeMaximo){
-                volume ++;
+        if (quebrado) {
+            return false;
+        }else {
+            if(getVolume() > moeda.getVolume()||moeda.getVolume() > volumeMaximo) {
+                return false;
+            }else {
+                setVolume(moeda.getVolume());
+                this.moedas += moeda.getValor();
                 return true;
             }
-            else return false;
         }
-        else return false;
     }
 
     public String obterItens() {
-        return "vazio";
+        if(!quebrado){
+            return null;
+        }else{
+            if(getVolume() == 0){
+                return "vazio";
+            }else{
+                this.volume = 0;
+                return getItens();
+            }
+        }
     }
 
     private String getItens() {
-        return null;
+        return itens;
     }
 
     public double obterMoedas() {
-        if(quebrado==true){
-            return 0;
+        if(!quebrado) {
+            return -1;    
+        }else{
+            this.volume=0;
+            return getMoedas();
         }
-        else return -1;
+    }
+
+    private double getMoedas() {
+        return moedas;
     }
     
     public boolean taInteiro() {
-        return false;
+        if(quebrado) {
+            return false;
+        }
+        return true;
     }
 
     public boolean quebrar() {
-        if (quebrado == true){
-            return false;
-        }else{
-            volume = 0;
-            volumeMaximo = 0;
-            quebrado = true;
+        if(!quebrado) {
+            this.quebrado = true;
             return true;
         }
+        return false;
     }
 }
