@@ -30,17 +30,19 @@ public class Cofre {
         if (quebrado) {
             return false;
         }else {
-            if(getVolume() > item.getVolume()||item.getVolume() > volumeMaximo) {
-                return false;
+            if(volumeMaximo < item.getVolume()) {
+            	return false;
             }else {
-                setVolume(item.getVolume());
-                if(!" ".equals(item.getDescricao())){
-                    this.itens=", ";
-                    this.itens+=item.getDescricao();
-                }else{
-                    this.itens+=item.getDescricao();
+            	if(itens=="") {
+	                setVolume(item.getVolume());
+	                this.itens+=item.getDescricao();
+	                return true;
+                }else {
+                	setVolume(item.getVolume());
+                	this.itens+=", ";
+	                this.itens+=item.getDescricao();
+	                return true;
                 }
-                return true;
             }
         }
     }

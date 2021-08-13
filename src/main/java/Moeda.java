@@ -10,15 +10,16 @@ public enum Moeda {
 	
     Moeda(double valor, int volume) {
     	this.volume = volume;
-	this.valor = valor;
+		this.valor = valor;
     }
 
 	public int getVolume() {
-            return volume;
+		return volume;
 	}
 
 	public double getValor(){
-            return valor;
+		return valor;
 	}
+    
     
 }
